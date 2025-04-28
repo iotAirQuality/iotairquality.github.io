@@ -430,7 +430,6 @@ function handleDownload(format) {
     alert("Please select a date first.");
     return;
   }
-
   // Convert selected date from YYYY-MM-DD to DD/MM/YYYY
   const [year, month, day] = selectedDateInput.split("-");
   const formattedDate = `${day}/${month}/${year}`;
@@ -443,8 +442,33 @@ function handleDownload(format) {
         alert("No data found.");
         return;
       }
+      const customHeader = [
+  "Date",
+  "Time",
+  "Latitude",
+  "Longitude",
+  "Altitude",
+  "PM₂.₅",
+  "PM₁₀",
+  "O₃",
+  "CO₂",
+  "CO",
+  "CH₄",
+  "NH₃",
+  "VOC",
+  "NO₂",
+  "Temperature",
+  "Pressure",
+  "Humidity",
+  "Wind Speed",
+  "AQI (O₃)",
+  "AQI (CO)",
+  "AQI (NO₂)",
+  "AQI (PM₂.₅)",
+  "AQI (PM₁₀)"
+];
 
-      const header = rows[0];
+      // const header = rows[0];
       const filteredRows = rows.filter((row, index) => {
         if (index === 0) return false; // skip header
         const cellDate = row[0]?.split(" ")[0]; // get date part if timestamp
@@ -456,7 +480,7 @@ function handleDownload(format) {
         return;
       }
 
-      const finalData = [header, ...filteredRows];
+      const finalData = [customHeader, ...filteredRows];
 
       if (format === 'xlsx') {
         const wb = XLSX.utils.book_new();
