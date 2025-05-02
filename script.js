@@ -430,6 +430,7 @@ function handleDownload(format) {
     alert("Please select a date first.");
     return;
   }
+
   // Convert selected date from YYYY-MM-DD to DD/MM/YYYY
   const [year, month, day] = selectedDateInput.split("-");
   const formattedDate = `${day}/${month}/${year}`;
@@ -442,7 +443,8 @@ function handleDownload(format) {
         alert("No data found.");
         return;
       }
-      const customHeader = [
+
+            const customHeader = [
   "Date",
   "Time",
   "Latitude",
@@ -467,8 +469,6 @@ function handleDownload(format) {
   "AQI (PM₂.₅)",
   "AQI (PM₁₀)"
 ];
-
-      // const header = rows[0];
       const filteredRows = rows.filter((row, index) => {
         if (index === 0) return false; // skip header
         const cellDate = row[0]?.split(" ")[0]; // get date part if timestamp
